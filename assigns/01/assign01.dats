@@ -1,4 +1,10 @@
 (* ****** ****** *)
+(*
+Due:
+Monday,
+the 27th of September
+*)
+(* ****** ****** *)
 #staload "./lambda0.sats"
 (* ****** ****** *)
 #include
