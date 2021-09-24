@@ -7,70 +7,82 @@ implement main0() = ()
 
 typedef tvar1 = string
 
-datatype term1 =
-| T1Mint of int
-| T1Mvar of tvar1
-| T1Mlam of (tvar1, term1)
-| T1Mapp of (term1, term1)
+datatype term0 =
+| T0Mint of int
+| T0Mvar of tvar1
+| T0Mlam of (tvar1, term0)
+| T0Mapp of (term0, term0)
+
+(* ****** ****** *)
 
 extern
 fun
-print_term1: (term1) -> void
+print_term0: (term0) -> void
 extern
 fun
-fprint_term1
-(out: FILEref, trm: term1): void
+fprint_term0
+(out: FILEref, trm: term0): void
 
-overload print with print_term1
-overload fprint with fprint_term1
+overload print with print_term0
+overload fprint with fprint_term0
+
+(* ****** ****** *)
 
 implement
-print_term1(trm) =
-fprint_term1(stdout_ref, trm)
+print_term0(trm) =
+fprint_term0(stdout_ref, trm)
 implement
-fprint_term1(out, trm) =
+fprint_term0(out, trm) =
 (
 case+ trm of
-| T1Mint(i0) =>
-  fprint!(out, "T1Mint(", i0, ")")
-| T1Mvar(x0) =>
-  fprint!(out, "T1Mvar(", x0, ")")
-| T1Mlam(x1, t2) =>
-  fprint!(out, "T1Mlam(", x1, ", ", t2, ")")
-| T1Mapp(t1, t2) =>
-  fprint!(out, "T1Mapp(", t1, ", ", t2, ")")
+| T0Mint(i0) =>
+  fprint!(out, "T0Mint(", i0, ")")
+| T0Mvar(x0) =>
+  fprint!(out, "T0Mvar(", x0, ")")
+| T0Mlam(x1, t2) =>
+  fprint!(out, "T0Mlam(", x1, ", ", t2, ")")
+| T0Mapp(t1, t2) =>
+  fprint!(out, "T0Mapp(", t1, ", ", t2, ")")
 )
 
-val x = T1Mvar("x")
-val y = T1Mvar("y")
-val z = T1Mvar("z")
-val I = T1Mlam("x", x)
-val omega = T1Mlam("x", T1Mapp(x, x))
-val Omega = T1Mapp(omega, omega)
-val K = T1Mlam("x", T1Mlam("y", x))
-val K' = T1Mlam("x", T1Mlam("y", y))
-val S = T1Mlam("x", T1Mlam("y", T1Mlam("z", T1Mapp(T1Mapp(x, z), T1Mapp(y, z)))))
+(* ****** ****** *)
+
+val x = T0Mvar("x")
+val y = T0Mvar("y")
+val z = T0Mvar("z")
+val I = T0Mlam("x", x)
+val omega = T0Mlam("x", T0Mapp(x, x))
+val Omega = T0Mapp(omega, omega)
+val K = T0Mlam("x", T0Mlam("y", x))
+val K' = T0Mlam("x", T0Mlam("y", y))
+val S = T0Mlam("x", T0Mlam("y", T0Mlam("z", T0Mapp(T0Mapp(x, z), T0Mapp(y, z)))))
 
 val () = println!("K = ", K)
 val () = println!("S = ", S)
 
+(* ****** ****** *)
+
 extern
 fun
-term1_subst
-( t0: term1
-, x0: tvar1, sub: term1): term1
+term0_subst
+( t0: term0
+, x0: tvar1, sub: term0): term0
 
 implement
-term1_subst
+term0_subst
 (t0, x0, sub) =
 (
 case+ t0 of
-| T1Mint _ => t0
-| T1Mvar(x1) =>
+| T0Mint _ => t0
+| T0Mvar(x1) =>
   if x0 = x1 then sub else t0
-| T1Mlam(x1, t2) =>
+| T0Mlam(x1, t2) =>
   if x0 = x1
-  then t0 else T1Mlam(x1, term1_subst(t2, x0, sub))
-| T1Mapp(t1, t2) =>
-  T1Mapp(term1_subst(t1, x0, sub), term1_subst(t2, x0, sub))
+  then t0 else T0Mlam(x1, term0_subst(t2, x0, sub))
+| T0Mapp(t1, t2) =>
+  T0Mapp(term0_subst(t1, x0, sub), term0_subst(t2, x0, sub))
 )
+
+(* ****** ****** *)
+
+(* end of [lambda0.dats] *)

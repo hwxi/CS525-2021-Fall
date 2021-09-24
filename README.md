@@ -37,5 +37,5 @@ Please remember to sync with the class repo frequently:
 
 ```
 git fetch upstream
-git merge upstream/master master
+git merge upstream/main main
 ```

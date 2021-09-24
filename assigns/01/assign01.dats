@@ -2,7 +2,7 @@
 (*
 Due:
 Monday,
-the 27th of September
+the 4th of October
 *)
 (* ****** ****** *)
 #staload "./lambda0.sats"
