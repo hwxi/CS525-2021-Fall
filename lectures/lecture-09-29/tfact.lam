@@ -1,0 +1,13 @@
+(* ****** ****** *)
+
+local
+//
+val x = T0Mvar("x")
+val f = T0Mvar("f")
+//
+in
+val tfact =
+T0Mfix("f", T0Mlam("x", T0Mifb(T0Migt(x, T0Mint(0)), T0Mmul(x, T0Mapp(f, T0Madd(x, T0Mint(~1)))), T0Mint(1))))
+end // end of [local]
+
+(* ****** ****** *)

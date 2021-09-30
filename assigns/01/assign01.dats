@@ -1,8 +1,8 @@
 (* ****** ****** *)
 (*
 Due:
-Monday,
-the 4th of October
+Wednesday
+the 6th of October
 *)
 (* ****** ****** *)
 #staload "./lambda0.sats"
@@ -10,21 +10,23 @@ the 4th of October
 #include
 "share/atspre_staload.hats"
 (* ****** ****** *)
+(*
 #staload
 "./../../mylib/mylib.sats"
 #staload
 "./../../mylib/mylib.dats"
+*)
 (* ****** ****** *)
 //
 // Please finish
 // the implementation of
-// of the function t0erm_fvset
+// of the function term0_fvset
 //
 (*
 Note that you need to implement
 mylist_append and mylist_remove
 If you are not clear about what
-these function are supposed to do,
+these functions are supposed to do,
 please ask your questions on Piazza
 *)
 //
@@ -35,7 +37,7 @@ HX: 20 points
 *)
 (*
 implement
-t0erm_fvset(t0) =
+term0_fvset(t0) =
 (
 case+ t0 of
 | T0Mint _ =>
@@ -44,44 +46,44 @@ case+ t0 of
   mylist_sing(x0)
 | T0Mapp(t1, t2) =>
   mylist_append
-  (t0erm_fvset(t1), t0erm_fvset(t2))
+  (term0_fvset(t1), term0_fvset(t2))
 | T0Mlam(x0, t1) =>
-  mylist_remove(t0erm_fvset(t1), x0)
+  mylist_remove(term0_fvset(t1), x0)
 )
 *)
 
 (* ****** ****** *)
 
 (*
+//
 HX: 10 points
-*)
-(*
-Note that the datatype [t0erm]
-is extended with the following
-constructor:
+Please construct a term in LAMBDA0 that
+computes the following function fibo:
 //
-| T0Mbtf of bool // booleans
+fun
+fibo(n: int): int =
+if n >= 2 then fibo(n-1)+fibo(n-2) else n
 //
-which is for representing boolean
-values (true and false). Please make
-changes to the functions t0erm_fprint
-and t0erm_interp accordingly.
 *)
+val tfibo : term0 // See [tfact] as an example
 
 (* ****** ****** *)
-
+//
 (*
-HX: 10 points
+HX: 70 points
+//
+please
+implement an interpreter for LAMBDA0
+//
+fun term0_interp(prgm: term0): term0
+//
+Note that term0_interp is the same as
+term0_eval given during lectures. This problem
+asks you to read the code of term0_eval and use
+it (mostly, copy/paste it) to implement term0_interp
+//
 *)
-(*
-Please extend t0erm_interp
-to handle the following integer
-comparision functions:
-
-<, <=, >, >=, ==, and !=
-
-*)
-
+//
 (* ****** ****** *)
 
 (* end of [assign01.dats] *)
