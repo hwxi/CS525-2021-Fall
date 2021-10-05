@@ -10,12 +10,7 @@ the 6th of October
 #include
 "share/atspre_staload.hats"
 (* ****** ****** *)
-(*
-#staload
-"./../../mylib/mylib.sats"
-#staload
-"./../../mylib/mylib.dats"
-*)
+#staload "./../../mylib/mylib.dats"
 (* ****** ****** *)
 //
 // Please finish
@@ -32,6 +27,9 @@ please ask your questions on Piazza
 //
 (* ****** ****** *)
 
+extern
+fun
+term0_fvset(t0: term0): mylist(tvar0)
 (*
 HX: 20 points
 *)
@@ -65,6 +63,7 @@ fibo(n: int): int =
 if n >= 2 then fibo(n-1)+fibo(n-2) else n
 //
 *)
+extern
 val tfibo : term0 // See [tfact] as an example
 
 (* ****** ****** *)
