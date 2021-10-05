@@ -17,8 +17,21 @@ mylist(a:t@ype) =
 extern
 fun
 {a:t@ype}
+mylist_sing(x0: a): mylist(a)
+
+(* ****** ****** *)
+
+extern
+fun
+{a:t@ype}
 mylist_length(xs: mylist(a)): int
 
+(* ****** ****** *)
+extern
+fun
+{a:t@ype}
+mylist_append
+(xs: mylist(a), ys: mylist(a)): mylist(a)
 (* ****** ****** *)
 
 extern
@@ -33,6 +46,26 @@ mylist_rappend
 
 (* ****** ****** *)
 
+extern
+fun
+{a:t@ype}
+mylist_remove
+(xs: mylist(a), x0: a): mylist(a)
+
+(* ****** ****** *)
+(*
+HX-2021-10-05:
+Implementation should be given below
+*)
+(* ****** ****** *)
+
+implement
+{a}
+mylist_sing(x0) =
+mylist_cons(x0, mylist_nil())
+
+(* ****** ****** *)
+
 implement
 {a}
 mylist_length(xs) =
@@ -44,6 +77,14 @@ case+ xs of
 | mylist_nil() => r0
 | mylist_cons(x1, xs) => loop(xs, r0+1)
 }
+
+(* ****** ****** *)
+
+implement
+{a}
+mylist_append(xs, ys) =
+mylist_rappend<a>
+(mylist_reverse<a>(xs), ys)
 
 (* ****** ****** *)
 
