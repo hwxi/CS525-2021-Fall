@@ -365,4 +365,22 @@ end (* end of [local] *)
 
 (* ****** ****** *)
 
+local
+
+#include "tf91.lam"
+
+in(*in-of-local*)
+
+val
+tf91_57_abs =
+T0Mapp(tf91, T0Mint(57))
+val
+tf91_57_val = term0_eval(tf91_57_abs)
+val () =
+println!("tf91(57) = ", tf91_57_val)
+
+end (* end of [local] *)
+
+(* ****** ****** *)
+
 (* end of [lambda0.dats] *)

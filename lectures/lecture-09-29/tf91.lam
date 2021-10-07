@@ -1,0 +1,27 @@
+(*
+val
+f91 =
+fix f(n: int): int =>
+if n > 100 then n - 10 else f(f(n+11))
+*)
+
+local
+
+val f = T0Mvar"f"
+val n = T0Mvar"n"
+
+in
+  
+val tf91 =
+T0Mfix
+( "f",
+T0Mlam ("n", 
+T0Mifb
+( T0Migt(n, T0Mint(100))
+, T0Madd(n, T0Mint(~10))
+, T0Mapp(f, T0Mapp(f, T0Madd(n, T0Mint(11))))
+)
+)
+)
+end
+

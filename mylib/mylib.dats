@@ -49,8 +49,17 @@ mylist_rappend
 extern
 fun
 {a:t@ype}
-mylist_remove
+mylist_remove_eqs
 (xs: mylist(a), x0: a): mylist(a)
+
+(* ****** ****** *)
+
+extern
+fun
+{a:t@ype}
+{b:t@ype}
+mylist_map
+(xs: mylist(a), f0: a -<cloref1> b): mylist(b)
 
 (* ****** ****** *)
 (*
@@ -104,6 +113,50 @@ mylist_nil() => ys
 |
 mylist_cons(x1, xs) =>
 mylist_rappend<a>(xs, mylist_cons(x1, ys))
+
+(* ****** ****** *)
+
+implement
+{a}
+mylist_remove_eqs
+(xs, x0) =
+(
+  helper(xs)
+) where
+{
+fun
+helper
+(xs: mylist(a)): mylist(a) =
+(
+case+ xs of
+| mylist_nil() =>
+  mylist_nil()
+| mylist_cons(x1, xs) =>
+  if
+  geq_val_val<a>(x0, x1)
+  then helper(xs) else mylist_cons(x1, helper(xs))
+)
+}
+
+(* ****** ****** *)
+
+implement
+{a}{b}
+mylist_map
+(xs, f0) =
+(
+  helper(xs)
+) where
+{
+fun
+helper
+(xs: mylist(a)): mylist(b) =
+case+ xs of
+| mylist_nil() =>
+  mylist_nil()
+| mylist_cons(x1, xs) =>
+  mylist_cons(f0(x1), helper(xs))
+}
 
 (* ****** ****** *)
 
