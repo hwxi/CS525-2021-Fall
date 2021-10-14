@@ -62,6 +62,19 @@ mylist_map
 (xs: mylist(a), f0: a -<cloref1> b): mylist(b)
 
 (* ****** ****** *)
+
+extern
+fun
+{a:t@ype}
+fprint_mylist
+(out: FILEref, xs: mylist(a)): void
+extern
+fun{}
+fprint_mylist_sep(out: FILEref): void
+
+overload fprint with fprint_mylist
+
+(* ****** ****** *)
 (*
 HX-2021-10-05:
 Implementation should be given below
@@ -157,6 +170,33 @@ case+ xs of
 | mylist_cons(x1, xs) =>
   mylist_cons(f0(x1), helper(xs))
 }
+
+(* ****** ****** *)
+
+implement
+{(*tmp*)}
+fprint_mylist_sep(out) = fprint(out, "; ")
+
+(* ****** ****** *)
+
+implement
+{a}
+fprint_mylist
+(out, xs) =
+loop(xs, 0) where
+{
+fun
+loop
+(xs: mylist(a), i0: int): void =
+(
+case+ xs of
+| mylist_nil() => ()
+| mylist_cons(x1, xs) =>
+  (if i0 > 0
+   then fprint_mylist_sep<>(out);
+   fprint_val<a>(out, x1); loop(xs, i0+1))
+)
+} (* end of [fprint_mylist] *)
 
 (* ****** ****** *)
 
