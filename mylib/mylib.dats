@@ -7,10 +7,32 @@ myoptn(a:t@ype) =
 
 (* ****** ****** *)
 
+#define none myoptn_nil
+#define some myoptn_cons
+
+(* ****** ****** *)
+
+extern
+fun
+{a:t@ype}
+fprint_myoptn
+( out: FILEref
+, opt: myoptn(a)): void
+
+overload fprint with fprint_myoptn
+
+(* ****** ****** *)
+
 datatype
 mylist(a:t@ype) =
 | mylist_nil of ()
 | mylist_cons of (a, mylist(a))
+
+(* ****** ****** *)
+
+#define nil mylist_nil
+#define :: mylist_cons
+#define cons mylist_cons
 
 (* ****** ****** *)
 
@@ -79,6 +101,21 @@ overload fprint with fprint_mylist
 HX-2021-10-05:
 Implementation should be given below
 *)
+(* ****** ****** *)
+
+implement
+{a}
+fprint_myoptn
+(out, opt) =
+(
+case+ opt of
+| myoptn_nil() =>
+  fprint!(out, "none()")
+| myoptn_cons(x0) =>
+  ( fprint(out, "some(");
+    fprint_val<a>(out, x0); fprint(out, ")"))
+)
+
 (* ****** ****** *)
 
 implement
