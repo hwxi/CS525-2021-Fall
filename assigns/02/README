@@ -1,0 +1,11 @@
+###### beg of [README] ######
+
+Assignment#02:
+It is due Monday, the 25th of October, 2021.
+
+Please implement all of the functions declared
+in lambda0.dats. In particular, please pay attention
+of T0Mtup and T0Msel, which are for tuple formation
+and tuple projection.
+
+###### end of [README] ######
