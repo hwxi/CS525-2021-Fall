@@ -9,6 +9,10 @@
 "./../../mylib2/mylib2.dats"
 *)
 (* ****** ****** *)
+//
+// Total points: 120 points
+//
+(* ****** ****** *)
 
 typedef tvar0 = string
 typedef topr0 = string
@@ -93,6 +97,27 @@ extern
 fun
 term0_eval1
 (prgm: term0, env0: tenv0): tval0
+//
+(* ****** ****** *)
+//
+// HX-2021-10-16: 10 points
+// Please construct a term0-value that
+// encodes a tail-recursive implementation
+// of the factorial function.
+//
+extern val term0_fact_trec: term0
+//
+(* ****** ****** *)
+//
+// HX-2021-10-16: 10 points
+// Please construct a term0-value that
+// encodes an implemenation of the so-called
+// map function on a tuple.
+// For instance, given (1, 2, 3) and the function
+// lam x => x*x, this map function returns
+// (1, 4, 9)
+//
+extern val term0_tuple_map: term0
 //
 (* ****** ****** *)
 
