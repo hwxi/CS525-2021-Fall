@@ -31,7 +31,10 @@ datatype term0 =
 | T0Mfix of (tvar0, term0)
 //
 | T0Mtup of mylist(term0)
+(*
 | T0Msel of (term0(*tup*), int(*prj*))
+*)
+| T0Msel of (term0(*tup*), term0(*prj*))
 //
 | T0Mopr of (topr0, mylist(term0))
 //
