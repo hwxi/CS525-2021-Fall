@@ -1,0 +1,13 @@
+###### beg of [README] ######
+
+Assignment#02:
+It is due Monday, the 1st of November, 2021.
+
+Note that term0_teval0 is for type-checking.
+
+Please implement all of the functions declared
+in lambda0.dats. In particular, please pay attention
+of T0Mtup and T0Msel, which are for tuple formation
+and tuple projection.
+
+###### end of [README] ######
