@@ -1,5 +1,4 @@
 /*
-
 fun
 fact(n) = loop(1, 1) where
 {
@@ -49,6 +48,8 @@ fact(lamval n)
 /* ****** ****** */
 
 #define INT(x) LAMVAL_int(x)
+
+/* ****** ****** */
 
 static
 lamval
@@ -113,7 +114,9 @@ loop(lamval i, lamval r, lamval n)
 /* ****** ****** */
 
 int main() {
-  LAMVAL_print(fact(INT(1000000))); printf("\n"); return 0;
+  LAMVAL_print(fact(INT(10))); printf("\n");
+  // LAMVAL_print(fact(INT(1000000))); printf("\n");
+  return 0;
 }
 
 /* ****** ****** */
