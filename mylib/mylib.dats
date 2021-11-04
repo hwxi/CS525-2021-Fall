@@ -79,6 +79,14 @@ mylist_remove_eqs
 extern
 fun
 {a:t@ype}
+mylist_getopt_at
+(xs: mylist(a), i0: int): myoptn(a)
+
+(* ****** ****** *)
+
+extern
+fun
+{a:t@ype}
 {b:t@ype}
 mylist_map
 (xs: mylist(a), f0: a -<cloref1> b): mylist(b)
@@ -187,6 +195,31 @@ case+ xs of
   then helper(xs) else mylist_cons(x1, helper(xs))
 )
 }
+
+(* ****** ****** *)
+
+implement
+{a}
+mylist_getopt_at
+(xs, i0) =
+let
+//
+fun
+getopt
+(xs: mylist(a), i0: int): myoptn(a) =
+(
+case+ xs of
+|
+mylist_nil() => myoptn_nil()
+|
+mylist_cons(x0, xs) =>
+if i0 <= 0
+then myoptn_cons(x0) else getopt(xs, i0-1)
+)
+//
+in
+if (i0 >= 0) then getopt(xs, i0) else myoptn_nil()
+end // end of [mylist_getopt_at]
 
 (* ****** ****** *)
 
