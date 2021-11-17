@@ -73,6 +73,32 @@ case+ T1 of
 
 extern
 fun
+type0_new_ext(): type0
+implement
+type0_new_ext() =
+T0Pext(ref(myoptn_nil()))
+
+extern
+fun
+type0_new_fun(): type0
+implement
+type0_new_fun() =
+T0Pfun
+(type0_new_ext(), type0_new_ext())
+
+extern
+fun
+type0_new_tup(): type0
+implement
+type0_new_tup() =
+T0Ptup
+(type0_new_ext(), type0_new_ext())
+
+
+(* ****** ****** *)
+
+extern
+fun
 type0_eval
 (T1: type0): type0
 
@@ -265,9 +291,6 @@ type0_unify_main(T12, T22)
 
 (* ****** ****** *)
 
-////
-(* ****** ****** *)
-
 extern
 fun
 print_type0: (type0) -> void
@@ -290,6 +313,9 @@ datatype term0 =
 | T0Mlam of
   (tvar0, myoptn(type0), term0) // abstraction
 | T0Mapp of (term0, term0) // application
+//
+| T0Mtup of (term0, term0) 
+| T0Mfst of (term0) | T0Msnd of (term0)
 //
 | T0Mfix of
   (tvar0, myoptn(type0), term0)
@@ -347,7 +373,7 @@ fprint_term0(stdout_ref, trm)
 implement
 fprint_term0(out, trm) =
 (
-case+ trm of
+case- trm of
 //
 | T0Mint(i0) =>
   fprint!(out, "T0Mint(", i0, ")")
@@ -453,9 +479,15 @@ case- trm0 of
     | myoptn_cons(v0) => v0
   end
 //
-(*
 | T0Mlam(x0, T0, t1) =>
   let
+    val T0 =
+    (
+    case+ T0 of
+    | myoptn_nil() =>
+      type0_new_ext()
+    | myoptn_cons(T0) => T0
+    )
     val ctx1 =
     CTXcons(x0, T0, ctx0)
     val T1 =
@@ -463,19 +495,56 @@ case- trm0 of
   in
     T0Pfun(T0, T1)
   end
-*)
 //
 | T0Mapp(t1, t2) =>
+  let
+    val T1 =
+    term0_teval1(t1, ctx0)
+//
+    val TF =
+    type0_new_fun()
+    val-0 = type0_unify(T1, TF)
+//
+    val T2 =
+    term0_teval1(t2, ctx0)
+  in
+    case- TF of
+    | T0Pfun(T11, T12) =>
+      T12 where
+      { val-0 = type0_unify(T11, T2) }
+  end
+//
+| T0Mtup(t1, t2) =>
   let
     val T1 =
     term0_teval1(t1, ctx0)
     val T2 =
     term0_teval1(t2, ctx0)
   in
-    case- T1 of
-    | T0Pfun(T11, T12) =>
-      T12 where
-      { val-0 = type0_unify(T11, T2) }
+    T0Ptup(T1, T2)
+  end
+//
+| T0Mfst(ts) =>
+  let
+    val TS =
+    term0_teval1(ts, ctx0)
+    val TT =
+    type0_new_tup()
+    val-0 = type0_unify(TS, TT)
+  in
+    case- TT of
+    | T0Ptup(T11, T12) => T11
+  end
+| T0Msnd(ts) =>
+  let
+    val TS =
+    term0_teval1(ts, ctx0)
+    val TT =
+    type0_new_tup()
+    val-0 = type0_unify(TS, TT)
+  in
+    case- TT of
+    | T0Ptup(T11, T12) => T12
   end
 //
 (*
