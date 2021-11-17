@@ -21,10 +21,10 @@ t2ctx =
 
 extern
 fun
-tinfer(prgm: t2erm): t1ype
+tinfer0(prgm: t2erm): t1ype
 extern
 fun
-tinfer_env
+tinfer0_env
 (prgm: t2erm, ctx0: t2ctx): t1ype
 
 (* ****** ****** *)

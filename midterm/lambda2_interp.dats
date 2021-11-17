@@ -25,10 +25,10 @@ t2env =
 
 extern
 fun
-interp(prgm: t2erm): t2val
+interp0(prgm: t2erm): t2val
 extern
 fun
-interp_env
+interp0_env
 (prgm: t2erm, env0: t2env): t2val
 
 (* ****** ****** *)
