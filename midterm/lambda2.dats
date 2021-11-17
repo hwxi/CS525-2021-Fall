@@ -253,13 +253,15 @@ trans12(prgm) =
 trans12_env(prgm, T1ENVnil())
 
 (* ****** ****** *)
-
+(*
 extern
 fun
-t1env_find(t1env, t1var): myoptn(t2var)
-
+t1env_find
+(t1env, t1var): myoptn(t2var)
+*)
 (* ****** ****** *)
 
+(*
 implement
 trans12_env
 (trm0, env0) =
@@ -287,6 +289,7 @@ case- trm0 of
   }
 //
 ) (* end of [trans12_env] *)
+*)
 
 (* ****** ****** *)
 
