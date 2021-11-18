@@ -26,3 +26,9 @@ the following type:
 
 fun tinfer0: t2erm -> t1ype // See lambda2_tinfer.dats
 ################################################
+
+All code in your submission should be written by you.
+No collaboration of any form is permitted.
+
+################################################
+

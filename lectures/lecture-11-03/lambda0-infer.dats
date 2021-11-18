@@ -265,9 +265,9 @@ case+ T2 of
 |
 T0Pfun
 (T21, T22) =>
-type0_unify_main(T11, T21)
+type0_unify(T11, T21)
 +
-type0_unify_main(T12, T22)
+type0_unify(T12, T22)
 | _ (*non-T0Pfun*) => 1
 )
 //
@@ -279,9 +279,9 @@ case+ T2 of
 |
 T0Ptup
 (T21, T22) =>
-type0_unify_main(T11, T21)
+type0_unify(T11, T21)
 +
-type0_unify_main(T12, T22)
+type0_unify(T12, T22)
 | _ (*non-T0Ptup*) => 1
 )
 //
