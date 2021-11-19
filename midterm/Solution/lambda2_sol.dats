@@ -45,6 +45,13 @@ end // end of [t2var_stamp_new]
 in
 
 (* ****** ****** *)
+implement
+t2var_get_stamp
+(X) = X->t2var_stamp
+implement
+t2var_get_t1ype
+(X) = X->t2var_t1ype
+(* ****** ****** *)
 
 implement
 t2var_new() =
@@ -62,11 +69,20 @@ implement
 t2var_new_t1var
 (name) =
 let
-val t2v0 = t2var_new()
+val X = t2var_new()
 in
-t2v0->t2var_t1var := name; t2v0
+  X->t2var_t1var := name; X
 end
 
+(* ****** ****** *)
+implement
+fprint_t2var(out, X) =
+{
+val () =
+fprint!(out, X->t2var_t1var)
+val () =
+fprint!(out, "[", X->t2var_stamp, "]")
+}
 (* ****** ****** *)
 
 end // end of [local]

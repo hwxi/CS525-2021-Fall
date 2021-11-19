@@ -39,12 +39,25 @@ overload = with t2var_equal
 //
 extern
 fun
-t2var_get_t1ype(t2var): t1ypeopt
-and
+t2var_get_stamp(t2var): int
+//
+overload .stamp with t2var_get_stamp
+//
+(* ****** ****** *)
+//
+extern
+fun
+t2var_get_t1ype(t2var): t1ype
+(*
+extern
+fun
 t2var_set_t1ype(t2var, t1ype): void
+*)
 //
 overload .t1ype with t2var_get_t1ype
+(*
 overload .t1ype with t2var_set_t1ype
+*)
 //
 (* ****** ****** *)
 
@@ -60,6 +73,12 @@ fprint_t2var : (FILEref, t2var) -> void
 overload print with print_t2var
 overload prerr with prerr_t2var
 overload fprint with fprint_t2var
+
+(* ****** ****** *)
+
+implement
+t2var_equal
+(X1, X2) = (X1.stamp() = X2.stamp())
 
 (* ****** ****** *)
 
