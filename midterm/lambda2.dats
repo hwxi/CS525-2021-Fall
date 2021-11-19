@@ -19,7 +19,12 @@ typedef t2varlst = mylist(t2var)
 //
 extern
 fun
-t2var_new(): t2var
+t2var_new
+((*void*)): t2var
+extern
+fun
+t2var_new_t1var
+(name: t1var): t2var
 //
 (* ****** ****** *)
 //

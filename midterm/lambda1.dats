@@ -98,6 +98,18 @@ val T1Pstr = T1Pbas("str") // for strings
 //
 extern
 fun
+t1ype_new_ext((*void*)): t1ype
+extern
+fun
+t1ype_new_fun((*void*)): t1ype
+extern
+fun
+t1ype_new_tup((*void*)): t1ype
+//
+(* ****** ****** *)
+//
+extern
+fun
 t1xyz_get_t1ype(t1xyz): t1ypeopt
 and
 t1xyz_set_t1ype(t1xyz, t1ype): void
@@ -195,6 +207,27 @@ fprint!
 ) (* end of [fprint_t1ype] *)
 
 end // end of [local]
+
+(* ****** ****** *)
+
+implement
+t1ype_new_ext
+((*void*)) =
+T1Pext(t1xyz_new())
+
+implement
+t1ype_new_fun
+((*void*)) =
+T1Pfun
+( t1ype_new_ext()
+, t1ype_new_ext())
+
+implement
+t1ype_new_tup
+((*void*)) =
+T1Ptup
+( t1ype_new_ext()
+, t1ype_new_ext())
 
 (* ****** ****** *)
 
