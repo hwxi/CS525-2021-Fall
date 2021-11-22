@@ -88,5 +88,57 @@ fprint!(out, "[", X->t2var_stamp, "]")
 end // end of [local]
 
 (* ****** ****** *)
+extern
+fun
+t1env_find
+( t1env
+, t1var): myoptn(t2var)
+(* ****** ****** *)
+
+implement
+t1env_find
+(env0, x0) = myoptn_nil()
+
+(* ****** ****** *)
+
+implement
+trans12_env
+(trm0, env0) =
+(
+case- trm0 of
+//
+| T1Mint(i0) => T2Mint(i0)
+| T1Mbtf(b0) => T2Mbtf(b0)
+//
+| T1Mvar(x1) =>
+  T2Mvar(y1) where
+  { val-
+    myoptn_cons(y1) =
+    t1env_find(env0, x1) }
+//
+| T1Mlam(x1, T1, t2) =>
+  T2Mlam(y1, T1, t2) where
+  {
+    val y1 =
+    t2var_new_t1var(x1)
+    val t2 =
+    trans12_env(t2, env1) where
+    {
+      val
+      env1 =
+      T1ENVcons( x1, y1, env0 )
+    }
+  }
+//
+| T1Mapp(t1, t2) =>
+  T2Mapp(t1, t2) where
+  {
+    val t1 = trans12_env(t1, env0)
+    val t2 = trans12_env(t2, env0)
+  }
+//
+) (* end of [trans12_env] *)
+
+(* ****** ****** *)
 
 (* end of [lambda2_sol.dats] *)
