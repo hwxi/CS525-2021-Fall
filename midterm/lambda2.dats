@@ -92,7 +92,7 @@ datatype t2erm =
 (*
   | T2Mfloat of bool // value
 *)
-  | T2Mstring of string // value
+  | T2Mstr of string // value
 //
   | T2Mvar of t2var // not evaluated
 //
@@ -184,8 +184,8 @@ case+ t0 of
 | T2Mnil() =>
   fprint!(out, "T2Mnil(", ")")
 //
-| T2Mstring(x) =>
-  fprint!(out, "T2Mstring(", x, ")")
+| T2Mstr(x) =>
+  fprint!(out, "T2Mstr(", x, ")")
 //
 | T2Mvar(x) =>
   fprint!(out, "T2Mvar(", x, ")")
