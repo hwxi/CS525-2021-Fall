@@ -16,6 +16,8 @@ datatype
 t2val =
 | T2Vint of int
 | T2Vbtf of bool
+| T2Vref of (ref(t2val))
+| T2Vtup of (t2val, t2val)
 and
 t2env =
 | ENVnil of ()
