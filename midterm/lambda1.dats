@@ -141,6 +141,15 @@ t1xyz_new() = ref(myoptn_nil())
 (* ****** ****** *)
 
 implement
+t1xyz_get_t1ype
+(X0) = !X0
+implement
+t1xyz_set_t1ype
+(X0, T1) = !X0 := myoptn_cons(T1)
+
+(* ****** ****** *)
+
+implement
 fprint_t1xyz
 (out, X0) =
 (
