@@ -105,7 +105,7 @@ datatype t2erm =
   | T2Mopr of
     (t1opr, mylist(t2erm)) // primitive operators
 //
-  | T2Mift of (t2erm, t2erm, t2erm)
+  | T2Mifb of (t2erm, t2erm, t2erm)
   | T2Mfix of
     ( t2var(*f*)
     , t2var(*x*)
@@ -202,8 +202,8 @@ case+ t0 of
 | T2Mlet(x, t1, t2) =>
   fprint!(out, "T2Mlet(", x, "; ", t1, "; ", t2, ")")
 //
-| T2Mift(t1, t2, t3) =>
-  fprint!(out, "T2Mift(", t1, "; ", t2, "; ", t3, ")")
+| T2Mifb(t1, t2, t3) =>
+  fprint!(out, "T2Mifb(", t1, "; ", t2, "; ", t3, ")")
 //
 | T2Mfix(f1, x2, T1, T2, t3) =>
   fprint!(out, "T2Mfix(", f1, "; ", x2, "; ", t3, ")")
