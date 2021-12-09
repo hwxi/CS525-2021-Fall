@@ -270,4 +270,13 @@ case+ xs of
 
 (* ****** ****** *)
 
+extern
+fun{}
+iota(i0: int): string
+implement
+{}//tmp
+iota(i0) = strptr2string(g0int2string(i0))
+
+(* ****** ****** *)
+
 (* end of [mylib.dats] *)
